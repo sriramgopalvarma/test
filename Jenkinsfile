@@ -9,6 +9,7 @@ pipeline {
 
     stages {
         stage ('lint test') {
+            when { not { triggeredBy 'TimerTrigger' } }
             steps {
                 sh """
                 echo 'lint-test'
@@ -27,7 +28,10 @@ pipeline {
             }
         }
         stage("build stage") {
-            when { anyOf { branch 'dev*'; branch 'main' } }
+            when { 
+                anyOf { branch 'dev*'; branch 'main' }
+                not { triggeredBy 'TimerTrigger' }
+            }
             steps {
                 sh """echo "this is timetrigger test"
                 """
