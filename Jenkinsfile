@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        cron('H/5 * * * *') 
+    }
     
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
@@ -16,8 +19,8 @@ pipeline {
 
         stage ('unit-test') {
             when { anyOf { branch 'dev*'; branch 'main' } }
-            triggers {
-                cron('H/5 * * * *')
+            when {
+                triggeredBy 'TimerTrigger'
             }
             steps {
                 script {
