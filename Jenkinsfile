@@ -52,7 +52,7 @@ pipeline {
             }
             steps {
                 sh """
-                echo "not a pull request so do something
+                echo "not a pull request so do something"
                 """
             }
         }
