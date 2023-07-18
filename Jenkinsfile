@@ -1,12 +1,15 @@
 pipeline {
     agent any
-    
+    triggers {
+        cron('H/5 * * * *') // Replace this with your desired cron expression
+    }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
 
     stages {
         stage ('lint test') {
+            when { not { triggeredBy 'TimerTrigger' } }
             steps {
                 sh """
                 echo 'lint-test'
@@ -15,7 +18,7 @@ pipeline {
         } 
 
         stage ('unit-test') {
-            when { anyOf { branch 'dev*'; branch 'main' } }
+            when { triggeredBy 'TimerTrigger' }
             steps {
                 script {
                     sh """
@@ -25,31 +28,12 @@ pipeline {
             }
         }
         stage("build stage") {
-            when {
-                  branch 'main'  }
-            steps {
-                sh """echo "this is build stage for master only"
-                """
-            }
-        }
-        stage("pr stage") {
-            when {
-                  branch 'main'  }
-            steps {
-                sh """echo "this is build stage for master only"
-                """
-            }
-        }
-        stage('Example Deploy') {
-            when {
-                allOf {
-                    environment name: 'CHANGE_ID', value: ''
-                    branch 'main'
-                }
+            when { 
+                anyOf { branch 'dev*'; branch 'main' }
+                not { triggeredBy 'TimerTrigger' }
             }
             steps {
-                sh """
-                echo "not a pull request so do something
+                sh """echo "this is timetrigger test"
                 """
             }
         }
