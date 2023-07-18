@@ -19,9 +19,6 @@ pipeline {
 
         stage ('unit-test') {
             when { anyOf { branch 'dev*'; branch 'main' } }
-            when {
-                triggeredBy 'TimerTrigger'
-            }
             steps {
                 script {
                     sh """
@@ -32,9 +29,10 @@ pipeline {
         }
         stage("build stage") {
             when {
-                  branch 'main'  }
+                triggeredBy 'TimerTrigger'
+            }
             steps {
-                sh """echo "this is build stage for master only"
+                sh """echo "this is timetrigger test"
                 """
             }
         }
