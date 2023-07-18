@@ -47,7 +47,6 @@ pipeline {
         stage('Example Deploy') {
             when {
                 allOf {
-                    environment name: 'CHANGE_ID', value: ''
                     branch 'main'
                 }
             }
