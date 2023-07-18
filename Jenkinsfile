@@ -16,6 +16,9 @@ pipeline {
 
         stage ('unit-test') {
             when { anyOf { branch 'dev*'; branch 'main' } }
+            triggers {
+                cron(''H/5 * * * *'')
+            }
             steps {
                 script {
                     sh """
