@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    triggers {
-        cron('H/3 * * * *') 
-    }
-    
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
@@ -28,9 +24,6 @@ pipeline {
             }
         }
         stage("build stage") {
-            when {
-                triggeredBy 'TimerTrigger'
-            }
             steps {
                 sh """echo "this is timetrigger test"
                 """
