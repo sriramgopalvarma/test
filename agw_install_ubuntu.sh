@@ -167,7 +167,7 @@ WantedBy=multi-user.target
 EOF
   chmod 644 $AGW_INSTALL_CONFIG
   ln -sf $AGW_INSTALL_CONFIG $AGW_INSTALL_CONFIG_LINK
-  reboot
+#  reboot
 fi
 
 echo "Checking if magma has been installed"
