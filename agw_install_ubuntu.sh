@@ -189,7 +189,7 @@ if [ "$MAGMA_INSTALLED" != "$SUCCESS_MESSAGE" ]; then
   127.0.0.1 ansible_connection=local" > $DEPLOY_PATH/agw_hosts
 
   # install magma and its dependencies including OVS.
-  su - $MAGMA_USER -c "ansible-playbook -e \"MAGMA_ROOT='/home/$MAGMA_USER/magma' OUTPUT_DIR='/tmp'\" -i $DEPLOY_PATH/agw_hosts $DEPLOY_PATH/magma_deploy.yml"
+  su - $MAGMA_USER -c "ansible-playbook -e \"MAGMA_ROOT='/home/$MAGMA_USER/magma' OUTPUT_DIR='/tmp'\" -i $DEPLOY_PATH/agw_hosts $DEPLOY_PATH/magma_deploy.yml -vv"
   sleep 10
 
   echo "AGW installation is done, Run agw_post_install_ubuntu.sh install script after reboot to finish installation"
