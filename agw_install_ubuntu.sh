@@ -168,7 +168,7 @@ EOF
   chmod 644 $AGW_INSTALL_CONFIG
   ln -sf $AGW_INSTALL_CONFIG $AGW_INSTALL_CONFIG_LINK
   sleep 5
-#  reboot
+  reboot
 fi
 
 echo "Checking if magma has been installed"
@@ -189,7 +189,7 @@ if [ "$MAGMA_INSTALLED" != "$SUCCESS_MESSAGE" ]; then
   127.0.0.1 ansible_connection=local" > $DEPLOY_PATH/agw_hosts
 
   # install magma and its dependencies including OVS.
-#  su - $MAGMA_USER -c "ansible-playbook -e \"MAGMA_ROOT='/home/$MAGMA_USER/magma' OUTPUT_DIR='/tmp'\" -i $DEPLOY_PATH/agw_hosts $DEPLOY_PATH/magma_deploy.yml"
+  su - $MAGMA_USER -c "ansible-playbook -e \"MAGMA_ROOT='/home/$MAGMA_USER/magma' OUTPUT_DIR='/tmp'\" -i $DEPLOY_PATH/agw_hosts $DEPLOY_PATH/magma_deploy.yml"
 
   echo "Cleanup temp files"
   cd /root || exit
@@ -197,7 +197,7 @@ if [ "$MAGMA_INSTALLED" != "$SUCCESS_MESSAGE" ]; then
   echo "AGW installation is done, Run agw_post_install_ubuntu.sh install script after reboot to finish installation"
   wget https://raw.githubusercontent.com/magma/magma/"$MAGMA_VERSION"/lte/gateway/deploy/agw_post_install_ubuntu.sh -P /root/
 
-#  reboot
+  reboot
 else
   echo "Magma already installed, skipping.."
 fi
