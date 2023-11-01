@@ -68,9 +68,4 @@ else
     echo "DNS not reachable"
     sleep 1
   done
-
-  while ! ping -c 1 -W 1 -I eth0 8.8.8.8; do
-    echo "Network not ready yet"
-    sleep 1
-  done
 fi
