@@ -1,4 +1,10 @@
+#!/bin/bash
+set -x
+
+addr1="$1"
+gw_addr="$2"
 INTERFACE_DIR="/etc/network/interfaces.d"
+CLOUD_INSTALL="cloud"
 echo "Need to check if both interfaces are named eth0 and eth1"
 INTERFACES=$(ip -br a)
 if [[ $1 != "$CLOUD_INSTALL" ]] && ( [[ ! $INTERFACES == *'eth0'*  ]] || [[ ! $INTERFACES == *'eth1'* ]] || ! grep -q 'GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"' /etc/default/grub); then
