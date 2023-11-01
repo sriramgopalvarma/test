@@ -4,7 +4,7 @@ INTERFACES=$(ip -br a)
 if [[ $1 != "$CLOUD_INSTALL" ]] && ( [[ ! $INTERFACES == *'eth0'*  ]] || [[ ! $INTERFACES == *'eth1'* ]] || ! grep -q 'GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"' /etc/default/grub); then
   # changing intefaces name
   sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"/g' /etc/default/grub
-  sed -i 's/enp0s3/eth0/g' /etc/netplan/50-cloud-init.yaml
+  sed -i 's/enp1s0/eth0/g' /etc/netplan/50-cloud-init.yaml
   # changing interface name
   grub-mkconfig -o /boot/grub/grub.cfg
 
