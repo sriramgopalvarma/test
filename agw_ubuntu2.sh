@@ -30,18 +30,10 @@ if [[ $1 != "$CLOUD_INSTALL" ]] && ( [[ ! $INTERFACES == *'eth0'*  ]] || [[ ! $I
   address 10.0.2.1
   netmask 255.255.255.0" > "$INTERFACE_DIR"/eth1
 
-  # get rid of netplan
   systemctl unmask networking
   systemctl enable networking
 
-  apt-get --assume-yes purge nplan netplan.i
-
-  # Setting REBOOT flag to 1 because we need to reload new interface and network services.
   reboot
 else
   echo "Interfaces name are correct, let's check if network and DNS are up"
-  while ! nslookup google.com; do
-    echo "DNS not reachable"
-    sleep 1
-  done
 fi
