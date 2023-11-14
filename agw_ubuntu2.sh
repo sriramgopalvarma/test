@@ -26,9 +26,7 @@ if [[ $1 != "$CLOUD_INSTALL" ]] && ( [[ ! $INTERFACES == *'eth0'*  ]] || [[ ! $I
 
   # configuring eth1
   echo "auto eth1
-  iface eth1 inet static
-  address 10.0.2.1
-  netmask 255.255.255.0" > "$INTERFACE_DIR"/eth1
+  iface eth1 inet dhcp" > "$INTERFACE_DIR"/eth1
 
   systemctl unmask networking
   systemctl enable networking
