@@ -13,7 +13,7 @@ pipeline {
                             branch 'feature*';
                             branch 'main'
                         }
-                        changeset "Dashboard/Backend/**"
+                        changeset "README.md"
                     }
                     branch 'PR-*'
                 } 
