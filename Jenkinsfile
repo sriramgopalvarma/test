@@ -6,18 +6,10 @@ pipeline {
 
     stages {
         stage ('Lint Test for Backend') {
-            when { 
-                anyOf {
-                    allOf {
-                        anyOf { 
-                            branch 'feature*';
-                            branch 'main'
-                        }
-                        changeset "README.md"
-                    }
-                    branch 'PR-*'
-                } 
-            }
+            allOf { 
+                    branch 'main'
+                    changeset "Readme.md"
+                }
             steps {
                 sh "echo hii"
             }
