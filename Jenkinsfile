@@ -8,11 +8,7 @@ pipeline {
         stage ('test') {
             parallel {
                 stage ('Lint Test for Backend') {
-                    when { 
-                        anyof { 
-                            branch 'feature/*'
-                        } 
-                    }
+                    when { branch 'feature/*' }
                     steps {
                         sh "echo hii"
                     }
