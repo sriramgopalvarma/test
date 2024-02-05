@@ -14,13 +14,9 @@ pipeline {
                     }
                 }
                 stage ('unit Test for Backend') {
-                    when {
-                        allOf {
-                            branch 'feature'
-                            changes {
-                                README.md
-                            }
-                        }
+                    when { branch 'feature' }
+                    changes {
+                        README.md
                     }
                     steps {
                         sh "echo hii"
