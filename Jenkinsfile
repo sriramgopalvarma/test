@@ -22,8 +22,6 @@ pipeline {
         
                             if (changedFiles.contains(directoryPath)) {
                                 echo "File in the specified directory has been modified."
-                            } else {
-                                echo "No changes in the specified directory."
                             }
                         }
                     }
