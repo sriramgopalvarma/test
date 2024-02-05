@@ -15,7 +15,7 @@ pipeline {
                 }
                 stage ('unit Test for Backend') {
                     when { 
-                        allof {
+                        allOf {
                             branch 'feature/*' 
                             changes {
                                 README.md
