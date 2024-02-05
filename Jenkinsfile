@@ -17,7 +17,7 @@ pipeline {
                     when { 
                         allOf { 
                             branch 'feature*'
-                            expression { changeset "README.md" }
+                            changeset(changes: ["README.md"])
                         } 
                     }
                     steps {
