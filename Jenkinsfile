@@ -9,7 +9,7 @@ pipeline {
             parallel {
                 stage ('Lint Test for Backend') {
                     when { 
-                        allOf { 
+                        anyof { 
                             branch 'feature/*'
                         } 
                     }
