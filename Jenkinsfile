@@ -9,7 +9,6 @@ pipeline {
             when { 
                 allOf { 
                     branch 'feature*'
-                    changeset "dev/README.md"
                 } 
             }
             steps {
