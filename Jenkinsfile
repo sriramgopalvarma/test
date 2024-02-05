@@ -5,17 +5,31 @@ pipeline {
     }
 
     stages {
-        stage ('Lint Test for Backend') {
-            when { 
-                allOf { 
-                    branch 'main'
-                    changeset "README.md"
-                } 
+        stage ('test') {
+            parallel {
+                stage ('Lint Test for Backend') {
+                    when { 
+                        allOf { 
+                            branch 'main'
+                            changeset "README.md"
+                        } 
+                    }
+                    steps {
+                        sh "echo hii"
+                    }
+                }
+                stage ('unit Test for Backend') {
+                    when { 
+                        allOf { 
+                            branch 'main'
+                            changeset "README.md"
+                        } 
+                    }
+                    steps {
+                        sh "echo hii"
+                    }
+                }
             }
-            steps {
-                sh "echo hii"
-            }
-        }
-        
+        }    
     }
 }
