@@ -14,7 +14,7 @@ pipeline {
                     }
                 }
                 stage ('unit Test for Backend') {
-                    when { branch 'feature/*' }
+                    when { branch 'feature*' }
                     steps {
                         script {
                             def changedFiles = sh(script: 'git diff --name-only HEAD^ HEAD', returnStdout: true).trim()
