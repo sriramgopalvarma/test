@@ -8,7 +8,7 @@ pipeline {
         stage ('test') {
             parallel {
                 stage ('Lint Test for Backend') {
-                    when { branch 'feature/*' }
+                    when { branch 'feature*' }
                     steps {
                         sh "echo hii"
                     }
@@ -16,7 +16,7 @@ pipeline {
                 stage ('unit Test for Backend') {
                     when { 
                         allOf { 
-                            branch 'feature/*'
+                            branch 'feature*'
                             changeset "README.md"
                         } 
                     }
