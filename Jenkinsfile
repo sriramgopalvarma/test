@@ -14,16 +14,18 @@ pipeline {
                     }
                 }
                 stage ('unit Test for Backend') {
-                    when { 
-                        allOf {
-                            branch 'feature/*' 
-                            changes {
-                                README.md
+                    when { branch 'feature/*' }
+                    steps {
+                        script {
+                            def changes = sh(script: 'git diff --name-only HEAD^ HEAD', returnStdout: true).trim()
+        
+                            if (changes) {
+                                echo "Changed"
+                            } 
+                            else {
+                                echo "Not Changed"
                             }
                         }
-                    }
-                    steps {
-                        sh "echo hii"
                     }
                 }
             }
