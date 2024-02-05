@@ -14,11 +14,15 @@ pipeline {
                     }
                 }
                 stage ('unit Test for Backend') {
-                    when { 
-                        allOf { 
-                            branch 'feature*'
-                            expression { return currentBuild.changeSets.any { it.contains("README.md") } }
-                        } 
+                    when {
+                        allOf {
+                            expression {
+                                def isFeatureBranch = env.BRANCH_NAME.startsWith('feature')
+                                def hasMainGoChanges = script: true, returnStatus: true, script: "git diff --name-only HEAD^ HEAD | grep -q README.md"
+                
+                                return isFeatureBranch && hasMainGoChanges == 0
+                            }
+                        }
                     }
                     steps {
                         sh "echo hii"
