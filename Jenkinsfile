@@ -17,7 +17,7 @@ pipeline {
                     when { 
                         allOf { 
                             branch 'feature*'
-                            changeset(changes: ["README.md"])
+                            expression { return currentBuild.changeSets.any { it.contains("README.md") } }
                         } 
                     }
                     steps {
