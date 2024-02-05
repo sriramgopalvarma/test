@@ -7,26 +7,21 @@ pipeline {
     stages {
         stage ('test') {
             parallel {
-                stage ('Lint Test for Backend') {
+                stage ('Lint Test') {
                     when { branch 'feature*' }
                     steps {
-                        sh "echo hii"
+                        sh "echo Lint"
                     }
                 }
-                stage ('unit Test for Backend') {
-                    when { branch 'feature*' }
+                stage ('unit Test') {
+                    when {
+                        allOf { 
+                            branch 'feature*'
+                            changeset "dev/**"
+                        } 
+                    }
                     steps {
-                        script {
-                            def changedFiles = sh(script: 'git diff --name-only HEAD^ HEAD', returnStdout: true).trim()
-                            def directoryPath = 'dev/'
-        
-                            if (changedFiles.contains(directoryPath)) {
-                                echo "File in the specified directory has been modified."
-                            }
-                            else {
-                                echo "No changes done"
-                            }
-                        }
+                        echo "unit test"
                     }
                 }
             }
