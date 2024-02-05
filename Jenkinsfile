@@ -17,13 +17,13 @@ pipeline {
                     when { branch 'feature/*' }
                     steps {
                         script {
-                            def changes = sh(script: 'git diff --name-only HEAD^ HEAD', returnStdout: true).trim()
+                            def changedFiles = sh(script: 'git diff --name-only HEAD^ HEAD', returnStdout: true).trim()
+                            def directoryPath = 'dev/'
         
-                            if (changes) {
-                                echo "Changed"
-                            } 
-                            else {
-                                echo "Not Changed"
+                            if (changedFiles.contains(directoryPath)) {
+                                echo "File in the specified directory has been modified."
+                            } else {
+                                echo "No changes in the specified directory."
                             }
                         }
                     }
