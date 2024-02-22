@@ -9,7 +9,7 @@ def lint_directory(directory):
             if filename.endswith('.py'):
                 file_path = os.path.join(dirpath, filename)
                 subprocess.run(['pylint', file_path])
-                time.sleep(2) 
+                time.sleep(3) 
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
