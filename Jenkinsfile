@@ -1,9 +1,5 @@
 pipeline {
-    agent any
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '10'))
-    }
-
+    agent { label 'sxalable' }
     stages {
         stage ('test') {
             parallel {
