@@ -16,7 +16,7 @@ pipeline {
                         } 
                     }
                     steps {
-                        sh "echo hii"
+                        sh "cat agw_docker.sh"
                     }
                 }
             }
