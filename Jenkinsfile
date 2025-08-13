@@ -3,6 +3,9 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
+    parameters {
+        string(name: 'VERSION', defaultValue: 'v1', description: 'Enter the version (e.g., v25)')
+    }
 
     stages {
         stage ('test') {
@@ -13,7 +16,7 @@ pipeline {
                         sh "echo Lint"
                     }
                 }
-                stage ('unit Test') {
+                stage ('Version override') {
                     when {
                         allOf { 
                             branch 'feature*'
@@ -21,7 +24,10 @@ pipeline {
                         } 
                     }
                     steps {
-                        echo "unit test"
+                        sh """
+                        sed -i "s|test|${VERSION}|g" README.md
+                        cat README.md
+                        """
                     }
                 }
             }
