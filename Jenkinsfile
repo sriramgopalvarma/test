@@ -12,7 +12,7 @@ pipeline {
             when { not { triggeredBy 'TimerTrigger' } }
             steps {
                 sh """
-                echo 'lint-test'
+                echo 'unit-test'
                 """
             }
         } 
