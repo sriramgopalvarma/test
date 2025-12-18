@@ -10,7 +10,7 @@ pipeline {
                 stage ('Lint Test for Backend') {
                     when { branch 'main' }
                     steps {
-                        sh "echo ${params.PERSON}"
+                        sh "ls"
                     }
                 }
                 stage ('unit Test for Backend') {
