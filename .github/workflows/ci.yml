@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run a simple command
-        run: echo "Hello from GitHub Actions 🚀"
+      - name: sample stage
+        run: echo "Hello"
