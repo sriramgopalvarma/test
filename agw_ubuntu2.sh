@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-
+echo "script executing"
 addr1="$1"
 gw_addr="$2"
 INTERFACE_DIR="/etc/network/interfaces.d"
