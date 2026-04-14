@@ -20,7 +20,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::895812755110:role/github
+          role-to-assume: 
           aws-region: us-east-1
 
       - name: Test AWS Access
